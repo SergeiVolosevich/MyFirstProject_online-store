@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util
+   http://www.springframework.org/schema/util/spring-util.xsd
+   http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg ref="datasource"/>
+    </bean>
+    <bean id="datasource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="username" value="root"/>
+        <property name="password" value="pass"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/store"/>
+        <property name="connectionProperties">
+            <props>
+                <prop key="useSSL">false</prop>
+                <prop key="serverTimezone">UTC</prop>
+                <prop key="useUnicode">yes</prop>
+                <prop key="characterEncoding">UTF-8</prop>
+            </props>
+        </property>
+    </bean>
+</beans>
