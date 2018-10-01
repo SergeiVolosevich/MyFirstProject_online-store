@@ -64,9 +64,11 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: #FFFACD;
   text-align: left;
   background-color: #fff;
+  background-image: url(../images/back-ground.jpg);
+  background-attachment: fixed;
 }
 
 [tabindex="-1"]:focus {
@@ -365,7 +367,7 @@ h1, h2, h3, h4, h5, h6,
   font-family: inherit;
   font-weight: 500;
   line-height: 1.2;
-  color: #007bff;
+  color: #FFD700;
 }
 
 h1, .h1 {

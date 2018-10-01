@@ -11,5 +11,6 @@
 	   http://www.springframework.org/schema/context/spring-context.xsd">
 
     <import resource="classpath:data_sourse.xml"/>
+    <context:component-scan base-package="by.volosevich.mystore"/>
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 </beans>

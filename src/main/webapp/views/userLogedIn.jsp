@@ -12,8 +12,7 @@
 <body>
 	<!-- Header -->
     <c:import url="header.jsp"/>
-
-        <div class="container" >
+        <div class="container-fluid" >
         <!-- Carousel and news-->
         	<div class="row">
         		<!-- Carousel -->
@@ -26,7 +25,7 @@
         		<div class="carousel-inner">
         			<div class="carousel-item active">
         				<a href="https://www.21vek.by/"><img class="d-block w-100 h-100"
-        				src="<c:url value="/resources/images/carousel1.jpg"/>" alt="Logo" title="21Vek"></a>
+        				src="<c:url value="/resources/images/carousel.jpg"/>" alt="Logo" title="21Vek"></a>
         			</div>
         			<div class="carousel-item">
         				<a href="https://www.onliner.by/"><img class="d-block img-fluid"
@@ -75,9 +74,14 @@
 
         <!-- Content -->
         <div  class="container-fluid text-center">
-            <h1 class="display-1">TODO</h1>
-            <p>Input list of popular products from database</p>
-            <p>input them into the table whith max rows 5</p>
+        <h1 class="display-1">TODO</h1>
+        <div>
+            <form:form action="logout" method="post">
+             <button class="btn btn-primary" type="submit">Logout</button>
+            </form:form>
+            </div>
+        <p>Input list of popular products from database</p>
+        <p>input them into the table whith max rows 5</p>
         </div>
 
 <!-- Footer -->

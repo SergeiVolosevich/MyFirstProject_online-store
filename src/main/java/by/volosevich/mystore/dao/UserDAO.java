@@ -7,7 +7,4 @@ public interface UserDAO {
 
     void register(User user);
 
-    User validateUser(Login login);
-
-    boolean changePassword(User user);
 }
