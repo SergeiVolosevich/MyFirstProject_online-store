@@ -2,7 +2,7 @@ package by.volosevich.mystore.exeption;
 
 
 @SuppressWarnings("serial")
-public class NullProductList extends Exception{
+public class NullProductList extends RuntimeException{
     public NullProductList() {
     }
 

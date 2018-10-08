@@ -10,16 +10,12 @@
     <security:http pattern="/resources/**" security="none"/>
 
     <security:http>
-        <security:intercept-url pattern="/*" requires-channel="https"/>
-        <security:port-mappings>
-            <security:port-mapping http="9080" https="8443"/>
-        </security:port-mappings>
 
         <security:access-denied-handler error-page="/invalidAccess"/>
 
         <security:intercept-url pattern="/admin**" access="hasAuthority('ADMIN')"/>
         <security:intercept-url pattern="/user**" access="hasAuthority('USER')"/>
-        <security:intercept-url pattern="/userLogedIn**" access="hasAuthority('ADMIN','USER')"/>
+        <security:intercept-url pattern="/userLogedIn**" access="hasAuthority('ADMIN')"/>
 
         <security:remember-me token-validity-seconds="300" data-source-ref="datasource"/>
 
@@ -27,6 +23,7 @@
                              default-target-url="/userLogedIn"
                              login-page="/login" username-parameter="user"
                              password-parameter="password"/>
+        <security:remember-me data-source-ref="datasource"/>
 
         <security:logout logout-success-url="/login?logout" delete-cookies="JSESSIONID"/>
     </security:http>

@@ -29,18 +29,4 @@ public class CatalogDAOImpl implements CatalogDAO {
         return subcataloglist;
     }
 
-
-//    public static void main(String[] args) {
-//        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("data_sourse.xml");
-//        JdbcTemplate jdbcTemplate = (JdbcTemplate) context.getBean("jdbcTemplate");
-//
-//
-//        List<String> catalog = jdbcTemplate.queryForList(SQL_SELECT_CATALOGS,String.class);
-//        for (String c:catalog
-//             ) {
-//            System.out.println(c);
-//        }
-//        System.out.println(catalog.size());
-//
-//    }
 }

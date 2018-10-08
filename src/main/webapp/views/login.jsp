@@ -29,8 +29,8 @@
                                 <input type="password" name="password" class="form-control" id="password" placeholder="<spring:message code="password"/>">
                             </div>
                             <div class="custom-control custom-checkbox mb-1">
-                                <input type="checkbox" class="custom-control-input" id="remember_me">
-                                <label class="custom-control-label" for="remember_me"><spring:message code="remember"/></label>
+                                <input type="checkbox" class="custom-control-input" id="remember-me">
+                                <label class="custom-control-label" for="remember-me"><spring:message code="remember"/></label>
                             </div>
                                 <c:if test="${logout}">
                                     <div class="alert alert-success" role="alert">

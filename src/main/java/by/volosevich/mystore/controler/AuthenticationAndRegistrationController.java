@@ -1,7 +1,6 @@
 package by.volosevich.mystore.controler;
 
 
-import by.volosevich.mystore.exeption.NullProductList;
 import by.volosevich.mystore.model.User;
 import by.volosevich.mystore.service.UserService;
 import org.slf4j.Logger;
@@ -9,10 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.BindingResultUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -24,7 +24,7 @@ import javax.validation.Valid;
 import java.util.Locale;
 
 @Controller
-@SessionAttributes("user")
+
 public class AuthenticationAndRegistrationController {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
@@ -75,7 +75,7 @@ public class AuthenticationAndRegistrationController {
             redirectAttributes.addFlashAttribute("success", messageSource.getMessage("registration_success",
                     null, locale));
         } else {
-            modelAndView.setViewName("redirect:/registration");
+            modelAndView.setViewName("registration");
         }
         return modelAndView;
     }
@@ -86,7 +86,8 @@ public class AuthenticationAndRegistrationController {
     }
 
     @GetMapping(value = "/login")
-    public ModelAndView login(@RequestParam(value = "error", required = false) String error, @RequestParam(value = "logout", required = false) String logout) {
+    public ModelAndView login(@RequestParam(value = "error", required = false) String error,
+                              @RequestParam(value = "logout", required = false) String logout) {
         ModelAndView modelAndView = new ModelAndView("login");
         modelAndView.addObject("error", error != null);
         modelAndView.addObject("logout", logout != null);
