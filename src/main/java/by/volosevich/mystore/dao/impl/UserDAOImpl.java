@@ -2,13 +2,12 @@ package by.volosevich.mystore.dao.impl;
 
 import by.volosevich.mystore.dao.UserDAO;
 import by.volosevich.mystore.dao.sql_statement.Statements;
-import by.volosevich.mystore.model.Login;
-import by.volosevich.mystore.model.User;
-import by.volosevich.mystore.model.UserStatusEnum;
-import com.sun.prism.j2d.J2DPipeline;
+import by.volosevich.mystore.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -17,7 +16,7 @@ public class UserDAOImpl implements UserDAO {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void register(User user) {
+    public void register(Users user) {
 
         jdbcTemplate.update(Statements.SQL_UDATE_USERS, new Object[]{
                 user.getUserName(),
@@ -26,13 +25,12 @@ public class UserDAOImpl implements UserDAO {
 
         });
 
-        jdbcTemplate.update(Statements.SQL_UPDATE_USER_INFO, new Object[]{
-                user.getUserName(),
-                user.getName(),
-                user.getSurname(),
-                user.getPatronymic(),
-                user.getSex(),
-                user.getBirthdayDate()
-        });
+    }
+
+    @Override
+    public List<String> getAllUserName(String userName) {
+        List<String> userNames = jdbcTemplate.queryForList(Statements.SQL_SELECT_USERNAMES_FROM_USERS_BY_USERNAME,
+                new Object[]{userName},String.class);
+        return userNames;
     }
 }

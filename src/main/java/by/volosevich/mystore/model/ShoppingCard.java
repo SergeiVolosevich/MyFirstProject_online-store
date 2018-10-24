@@ -6,7 +6,7 @@ import java.util.Objects;
 public class ShoppingCard {
 
     private int shoppingCardUd;
-    private User user;
+    private Users user;
     private List<Product> productList;
 
     public ShoppingCard() {
@@ -20,11 +20,11 @@ public class ShoppingCard {
         this.shoppingCardUd = shoppingCardUd;
     }
 
-    public User getUser() {
+    public Users getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 

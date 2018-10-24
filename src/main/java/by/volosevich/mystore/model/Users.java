@@ -1,41 +1,56 @@
 package by.volosevich.mystore.model;
 
+import by.volosevich.mystore.configuration.validation.annotations.ConfirmPassword;
+import by.volosevich.mystore.configuration.validation.annotations.DuplicateUserName;
+
+import javax.validation.GroupSequence;
 import javax.validation.constraints.*;
-import java.util.Date;
 import java.util.Objects;
 
-public class User {
 
-    @NotEmpty
-    @Pattern(regexp = "^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$")
+@ConfirmPassword(message = "{confirmPassword}")
+public class Users {
+
+    @DuplicateUserName(message = "{duplicate.username}")
+    @Pattern(regexp = "^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$", message = "{userName}")
+    @NotEmpty(message = "{userName}")
     private String userName;
 
-    @NotEmpty
-    @Pattern(regexp= "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$")
+
+    @Pattern(regexp = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$", message = "{password}")
     private String password;
 
+    @NotEmpty(message = "{confirmPassword.not.empty}")
+    private String copyPassword;
 
-    @NotEmpty
-    @Email
+    @NotEmpty(message = "{email.not.empty}")
+    @Email(message = "{email}")
     private String email;
 
-    @NotEmpty
     private String name;
 
-    @NotEmpty
+
     private String surname;
 
-    @NotEmpty
+
     private String patronymic;
 
-    @NotEmpty
+
     private String sex;
 
-    @NotEmpty
-    @Pattern(regexp = "(0[1-9]|1[0-9]|2[0-9]|3[01])[- /.](0[1-9]|1[012])[- /.][0-9]{4}")
+    //    @NotEmpty
+//    @Pattern(regexp = "(0[1-9]|1[0-9]|2[0-9]|3[01])[- /.](0[1-9]|1[012])[- /.][0-9]{4}")
     private String birthdayDate;
 
-    public User() {
+    public Users() {
+    }
+
+    public String getCopyPassword() {
+        return copyPassword;
+    }
+
+    public void setCopyPassword(String copyPassword) {
+        this.copyPassword = copyPassword;
     }
 
     public String getUserName() {
@@ -104,7 +119,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Users{" +
                 "userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
@@ -119,8 +134,8 @@ public class User {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
+        if (!(o instanceof Users)) return false;
+        Users user = (Users) o;
         return Objects.equals(getUserName(), user.getUserName()) &&
                 Objects.equals(getPassword(), user.getPassword()) &&
                 Objects.equals(getEmail(), user.getEmail()) &&

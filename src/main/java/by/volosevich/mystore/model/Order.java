@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Order {
 
     private int orderId;
-    private User user;
+    private Users user;
     private Date orderDate;
     private Map<Product,Integer> productList;
     private OrderStatusEnum orderStatus;
@@ -34,11 +34,11 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public User getUser() {
+    public Users getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 

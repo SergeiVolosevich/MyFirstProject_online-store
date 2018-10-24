@@ -2,6 +2,7 @@ package by.volosevich.mystore.controler;
 
 
 import by.volosevich.mystore.service.CatalogService;
+import org.hibernate.validator.resourceloading.PlatformResourceBundleLocator;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

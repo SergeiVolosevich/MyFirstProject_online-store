@@ -25,7 +25,7 @@
         		<div class="carousel-inner">
         			<div class="carousel-item active">
         				<a href="https://www.21vek.by/"><img class="d-block w-100 h-100"
-        				src="<c:url value="/resources/images/carousel.jpg"/>" alt="Logo" title="21Vek"></a>
+        				src="<c:url value="/resources/images/carousel1.jpg"/>" alt="Logo" title="21Vek"></a>
         			</div>
         			<div class="carousel-item">
         				<a href="https://www.onliner.by/"><img class="d-block img-fluid"

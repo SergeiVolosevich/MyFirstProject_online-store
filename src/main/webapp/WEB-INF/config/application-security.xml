@@ -10,7 +10,7 @@
     <security:http pattern="/resources/**" security="none"/>
 
     <security:http>
-
+        <!--$2a$04$bCMEyxrdF/7sgfUiUJ6Ose2vh9DAMaVBldS1Bw2fhi1jgutZrr9zm-->
         <security:access-denied-handler error-page="/invalidAccess"/>
 
         <security:intercept-url pattern="/admin**" access="hasAuthority('ADMIN')"/>

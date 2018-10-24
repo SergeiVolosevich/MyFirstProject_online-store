@@ -1,18 +1,18 @@
 package by.volosevich.mystore.controler;
 
 
-import by.volosevich.mystore.model.User;
+import by.volosevich.mystore.model.Users;
 import by.volosevich.mystore.service.UserService;
+import org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -36,8 +36,8 @@ public class AuthenticationAndRegistrationController {
     private UserService userService;
 
     @ModelAttribute
-    public User createUser() {
-        return new User();
+    public Users createUser() {
+        return new Users();
     }
 
     @GetMapping(value = "/admin")
@@ -51,22 +51,24 @@ public class AuthenticationAndRegistrationController {
     }
 
 
-    @GetMapping(value = "/userLogedIn")
+    @GetMapping(value = "/LogedIn")
     public String authenticatedUser() {
-        return "userLogedIn";
+        return "LogedIn";
     }
 
     @GetMapping(value = "/registration")
     public ModelAndView getRegistrationPage() {
         ModelAndView model = new ModelAndView("registration");
-        model.addObject("user", new User());
+        model.addObject("user", new Users());
         return model;
     }
 
-    @PostMapping(value = "/regInProcess")
-    public ModelAndView loginProcess(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, ModelMap model,
+
+    @PostMapping(value = "/registration")
+    public ModelAndView loginProcess(@Valid @ModelAttribute("user") Users user, BindingResult bindingResult, ModelMap model,
                                      RedirectAttributes redirectAttributes, Locale locale,
-                                     HttpServletRequest request, HttpServletResponse response) {
+                                     HttpServletRequest request, HttpServletResponse response) throws Exception {
+
         ModelAndView modelAndView = new ModelAndView();
         if (!bindingResult.hasErrors()) {
             userService.registerUser(user);
@@ -81,7 +83,7 @@ public class AuthenticationAndRegistrationController {
     }
 
     @GetMapping(value = "/registrationOk")
-    public String registrationSuccess(){
+    public String registrationSuccess() {
         return "registrationOk";
     }
 
@@ -96,19 +98,10 @@ public class AuthenticationAndRegistrationController {
 
     @GetMapping(value = "/invalidAccess")
     public ModelAndView invalidAccess(Exception exp, Locale locale) {
-        logger.error("Access is Denied"+ exp.getMessage());
+        logger.error("Access is Denied" + exp.getMessage());
         ModelAndView modelAndView = new ModelAndView("accessDenied");
-        modelAndView.addObject("errorMessage", messageSource.getMessage("access_denied",null, locale));
+        modelAndView.addObject("errorMessage", messageSource.getMessage("access_denied", null, locale));
         return modelAndView;
     }
 
-
-
-    @ExceptionHandler(DuplicateKeyException.class)
-    public ModelAndView handleNullProductList(Exception e, Locale locale){
-        logger.error("Dublicate username"+e.getMessage());
-        ModelAndView modelAndView = new ModelAndView("error");
-        modelAndView.addObject("error",messageSource.getMessage("dublicate_user",null, locale));
-        return modelAndView;
-    }
 }
